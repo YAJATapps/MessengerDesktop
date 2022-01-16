@@ -35,11 +35,11 @@
             this.newAccountLabel = new System.Windows.Forms.Label();
             this.dividerLabel = new System.Windows.Forms.Label();
             this.loginButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.logoPanel = new System.Windows.Forms.Panel();
             this.appLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.controlPanel = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.controlPanel.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,7 @@
             this.signupButton.TabIndex = 3;
             this.signupButton.Text = "Sign Up";
             this.signupButton.UseVisualStyleBackColor = true;
+            this.signupButton.Click += new System.EventHandler(this.signupButton_Click);
             // 
             // newAccountLabel
             // 
@@ -94,23 +95,26 @@
             this.loginButton.TabIndex = 2;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
-            // panel1
+            // logoPanel
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.logoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.appLabel);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(278, 70);
-            this.panel1.TabIndex = 8;
+            this.logoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.logoPanel.Controls.Add(this.appLabel);
+            this.logoPanel.Controls.Add(this.pictureBox1);
+            this.logoPanel.Location = new System.Drawing.Point(0, 0);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Size = new System.Drawing.Size(302, 60);
+            this.logoPanel.TabIndex = 8;
             // 
             // appLabel
             // 
             this.appLabel.AutoSize = true;
             this.appLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.appLabel.Location = new System.Drawing.Point(108, 20);
+            this.appLabel.ForeColor = System.Drawing.Color.White;
+            this.appLabel.Location = new System.Drawing.Point(118, 15);
             this.appLabel.Name = "appLabel";
             this.appLabel.Size = new System.Drawing.Size(114, 30);
             this.appLabel.TabIndex = 1;
@@ -119,9 +123,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(31, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(76, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -134,7 +138,7 @@
             this.controlPanel.Controls.Add(this.newAccountLabel);
             this.controlPanel.Controls.Add(this.dividerLabel);
             this.controlPanel.Controls.Add(this.loginButton);
-            this.controlPanel.Location = new System.Drawing.Point(12, 113);
+            this.controlPanel.Location = new System.Drawing.Point(12, 89);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(278, 201);
             this.controlPanel.TabIndex = 9;
@@ -143,16 +147,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 326);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(302, 318);
+            this.Controls.Add(this.logoPanel);
             this.Controls.Add(this.controlPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoginForm";
-            this.Text = "Login";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Text = "Messenger";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
+            this.logoPanel.ResumeLayout(false);
+            this.logoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
@@ -168,7 +173,7 @@
         private Label newAccountLabel;
         private Label dividerLabel;
         private Button loginButton;
-        private Panel panel1;
+        private Panel logoPanel;
         private Label appLabel;
         private PictureBox pictureBox1;
         private Panel controlPanel;
