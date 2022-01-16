@@ -23,6 +23,8 @@ namespace MessengerDesktop
         // The selected id
         public string tid { get; set; }
 
+        private List<string> profileIdList = new List<string>();
+
         public ChatForm()
         {
             InitializeComponent();
@@ -49,8 +51,17 @@ namespace MessengerDesktop
             loadMenu();
         }
 
+        // Load the menu with search profiles options and contacts
         private async void loadMenu()
         {
+            Label label = new Label();
+            label.Text = "Search profiles";
+            label.BackColor = Color.Gray;
+            label.Click += new EventHandler(this.clickSearchProfile);
+
+            menuFlowPanel.Controls.Add(label);
+
+
             HttpClient client = new HttpClient();
 
             // The url for messenger API
@@ -68,23 +79,12 @@ namespace MessengerDesktop
                 Button button = new Button();
                 button.Text = user.name;
                 button.Tag = user.id;
+                profileIdList.Add(user.id);
                 button.Width = menuFlowPanel.Width - 24;
                 button.Click += new EventHandler(this.clickChatButton);
                
                 menuFlowPanel.Controls.Add(button);
             }
-        }
-
-        // Handle when chat contact is clicked
-        async void clickChatButton(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            contactLabel.Text = button.Text;
-            tid = (string) button.Tag;
-
-            loadMessagesIntoPanel();
-
-            sendButton.Click += new EventHandler(this.sendMessageButton);
         }
 
         // Fetch the messages for the currently selected user
@@ -122,12 +122,59 @@ namespace MessengerDesktop
             }
         }
 
+        // Handle when chat contact is clicked
+        async void clickChatButton(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            contactLabel.Text = button.Text;
+            tid = (string) button.Tag;
+
+            loadMessagesIntoPanel();
+
+            sendButton.Click += new EventHandler(this.clickSendMessage);
+        }
+
+        // Handle when search profile label is clicked
+        async void clickSearchProfile(object sender, EventArgs e)
+        {
+            using (var form = new SearchProfileForm())
+            {
+                form.uid = uid;
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string clickedProfileId = form.clickedProfileId;
+
+                    contactLabel.Text = form.clickedProfileName;
+                    tid = clickedProfileId;
+
+                    loadMessagesIntoPanel();
+
+                    sendButton.Click += new EventHandler(this.clickSendMessage);
+
+                    if (!profileIdList.Contains(tid))
+                    {
+                        Button button = new Button();
+                        button.Text = form.clickedProfileName;
+                        button.Tag = tid;
+                        profileIdList.Add(tid);
+                        button.Width = menuFlowPanel.Width - 24;
+                        button.Click += new EventHandler(this.clickChatButton);
+
+                        menuFlowPanel.Controls.Add(button);
+                    }
+
+                }
+            }
+        }
 
         // Handle when chat contact is clicked
-        async void sendMessageButton(object sender, EventArgs e)
+        async void clickSendMessage(object sender, EventArgs e)
         {
+            // Content of the message text box
             var newMessage = messageTextBox.Text;
-            if (newMessage != null) {
+            if (newMessage != null)
+            {
                 HttpClient client = new HttpClient();
 
                 // The url for messenger API
@@ -137,10 +184,13 @@ namespace MessengerDesktop
 
                 var responseString = await response.Content.ReadAsStringAsync();
 
+                // Message added
                 if (responseString.Contains("addedMessage"))
                 {
+                    // Set the message text box to empty
                     messageTextBox.Text = "";
 
+                    // Reload the messages
                     loadMessagesIntoPanel();
                 }
             }
