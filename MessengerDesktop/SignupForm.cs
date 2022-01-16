@@ -53,6 +53,7 @@ namespace MessengerDesktop
         private void SignupForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = signupButton;
+            this.AcceptButton = signupButton;
         }
     }
 }

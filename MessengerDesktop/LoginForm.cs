@@ -26,11 +26,16 @@ namespace MessengerDesktop
 
             if (responseString.Contains("true"))
             {
-                MessageBox.Show("Correct");
+                // Open the chat form and close the login form
+                ChatForm chatForm = new ChatForm();
+                chatForm.username = username;
+                this.Hide();
+                chatForm.ShowDialog();
                 this.Close();
             }
             else
             {
+                // Show error message when authentication fails
                 MessageBox.Show("Wrong username or password!");
             }
 
@@ -45,6 +50,7 @@ namespace MessengerDesktop
         private void LoginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = newAccountLabel;
+            this.AcceptButton = loginButton;
         }
     }
 }

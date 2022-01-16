@@ -46,6 +46,7 @@
             // 
             this.pwdTextBox.Location = new System.Drawing.Point(15, 46);
             this.pwdTextBox.Name = "pwdTextBox";
+            this.pwdTextBox.PasswordChar = '*';
             this.pwdTextBox.PlaceholderText = "Password";
             this.pwdTextBox.Size = new System.Drawing.Size(272, 23);
             this.pwdTextBox.TabIndex = 3;
@@ -68,7 +69,9 @@
             this.Controls.Add(this.signupButton);
             this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.pwdTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SignupForm";
             this.Text = "Signup";
             this.Load += new System.EventHandler(this.SignupForm_Load);
