@@ -130,7 +130,7 @@
             this.Controls.Add(this.menuFlowPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChatForm";
-            this.Text = "Chat";
+            this.Text = "Messenger";
             this.Load += new System.EventHandler(this.ChatForm_Load);
             this.messagePanel.ResumeLayout(false);
             this.messagePanel.PerformLayout();
