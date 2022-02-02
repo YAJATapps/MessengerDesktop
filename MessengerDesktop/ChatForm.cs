@@ -87,7 +87,9 @@ namespace MessengerDesktop
                 button.Text = user.name;
                 button.Tag = user.id;
                 profileIdList.Add(user.id);
-                button.Width = menuFlowPanel.Width - 24;
+                button.Width = menuFlowPanel.Width - 20;
+                button.TextAlign = ContentAlignment.MiddleCenter;
+                button.Margin = new Padding(10, 4, 10, 4);
                 button.Click += new EventHandler(this.clickChatButton);
                
                 menuFlowPanel.Controls.Add(button);
