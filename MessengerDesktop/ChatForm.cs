@@ -54,11 +54,18 @@ namespace MessengerDesktop
         // Load the menu with search profiles options and contacts
         private async void loadMenu()
         {
+            // The button for search profiles above the chats
             Label label = new Label();
             label.Text = "Search profiles";
-            label.BackColor = Color.Gray;
+            label.BackColor = Color.FromArgb(204, 204, 204);
+            label.ForeColor = Color.Black;
+            label.Height = label.PreferredHeight * 2;
+            label.Width = menuFlowPanel.Width - 20;
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Margin = new Padding(10, 10, 10, 10);
             label.Click += new EventHandler(this.clickSearchProfile);
 
+            // Add the button to list
             menuFlowPanel.Controls.Add(label);
 
 
