@@ -120,6 +120,7 @@
             this.messageTextBox.Name = "messageTextBox";
             this.messageTextBox.Size = new System.Drawing.Size(551, 35);
             this.messageTextBox.TabIndex = 0;
+            this.messageTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextBox_KeyDown);
             // 
             // ChatForm
             // 

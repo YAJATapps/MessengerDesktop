@@ -167,7 +167,9 @@ namespace MessengerDesktop
                         button.Text = form.clickedProfileName;
                         button.Tag = tid;
                         profileIdList.Add(tid);
-                        button.Width = menuFlowPanel.Width - 24;
+                        button.Width = menuFlowPanel.Width - 20;
+                        button.TextAlign = ContentAlignment.MiddleCenter;
+                        button.Margin = new Padding(10, 4, 10, 4);
                         button.Click += new EventHandler(this.clickChatButton);
 
                         menuFlowPanel.Controls.Add(button);
@@ -205,6 +207,15 @@ namespace MessengerDesktop
             }
         }
 
+        // Press enter in the message input box to send message
+        private void messageTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                clickSendMessage(sender, e);
+            }
+        }
+
         // Represents a user with name and id
         public class User
         {
@@ -219,5 +230,6 @@ namespace MessengerDesktop
             public string msg { get; set; }
             public string sent { get; set; }
         }
+
     }
 }
