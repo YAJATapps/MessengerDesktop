@@ -118,14 +118,26 @@ namespace MessengerDesktop
             {
                 Label label = new Label();
                 label.Text = message.msg;
+                // Sent message, aligned right
                 if (message.sent.Contains("true"))
                 {
                     label.BackColor = Color.Aqua;
                     label.Dock = DockStyle.Right;
-                    label.Margin = new Padding(label.Width * 2, 0, 0, 0);
+                    label.Font = new System.Drawing.Font(label.Font.Name, 16F);
+                    label.MinimumSize = new Size((int)(messageList.Width * 0.85), label.PreferredHeight);
+                    label.AutoSize = true;
+                    label.TextAlign = ContentAlignment.MiddleRight;
+                    label.Margin = new Padding(10, 6, 10, 6);
                 }
                 else
+                {
                     label.BackColor = Color.Gray;
+                    label.Font = new System.Drawing.Font(label.Font.Name, 16F);
+                    label.MinimumSize = new Size((int)(messageList.Width * 0.85), label.PreferredHeight);
+                    label.AutoSize = true;
+                    label.TextAlign = ContentAlignment.MiddleLeft;
+                    label.Margin = new Padding(10, 6, 10, 6);
+                }
 
                 messageList.Controls.Add(label);
             }
