@@ -73,7 +73,7 @@ namespace MessengerDesktop
 
             // The url for messenger API
             var apiUrl = System.Environment.GetEnvironmentVariable("APP_API_URL") + "/api/v1/users/contacts?user=" + uid;
-     
+
             var response = await client.PostAsync(apiUrl, null);
 
             var responseString = await response.Content.ReadAsStringAsync();
@@ -82,7 +82,8 @@ namespace MessengerDesktop
             List<User> result = JsonConvert.DeserializeObject<List<User>>(responseString);
 
             // Add button for each user
-            foreach (var user in result) {
+            foreach (var user in result)
+            {
                 Button button = new Button();
                 button.Text = user.name;
                 button.Tag = user.id;
@@ -91,14 +92,26 @@ namespace MessengerDesktop
                 button.TextAlign = ContentAlignment.MiddleCenter;
                 button.Margin = new Padding(10, 4, 10, 4);
                 button.Click += new EventHandler(this.clickChatButton);
-               
+
                 menuFlowPanel.Controls.Add(button);
             }
+
+            // Add the text informing that no chat is currently selected
+            Label noMessagelabel = new Label();
+            noMessagelabel.Text = "No message profile selected. Select from the messsages view or send someone a new message.";
+            noMessagelabel.Font = new System.Drawing.Font(label.Font.Name, 24F);
+            noMessagelabel.MinimumSize = new Size(messageList.Width, label.PreferredHeight);
+            noMessagelabel.AutoSize = true;
+            noMessagelabel.TextAlign = ContentAlignment.MiddleCenter;
+            noMessagelabel.Margin = new Padding(0, 100, 0, 0);
+            messageList.Controls.Add(noMessagelabel);
         }
 
         // Fetch the messages for the currently selected user
         async void loadMessagesIntoPanel()
         {
+
+
             // Clear current items
             messageList.Controls.Clear();
 

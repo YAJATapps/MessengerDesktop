@@ -84,9 +84,8 @@
             this.contactLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.contactLabel.Location = new System.Drawing.Point(0, 0);
             this.contactLabel.Name = "contactLabel";
-            this.contactLabel.Size = new System.Drawing.Size(68, 30);
+            this.contactLabel.Size = new System.Drawing.Size(0, 30);
             this.contactLabel.TabIndex = 3;
-            this.contactLabel.Text = "label1";
             // 
             // chatSendPanel
             // 
