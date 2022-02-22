@@ -40,7 +40,7 @@ namespace MessengerDesktop
             HttpClient client = new HttpClient();
 
             // The url for messenger API
-            var apiUrl = System.Environment.GetEnvironmentVariable("APP_API_URL") + "/api/v1/users/find?user=" + text;
+            var apiUrl = ChatForm.appUrl + "/api/v1/users/find?user=" + text;
 
             var response = await client.PostAsync(apiUrl, null);
 

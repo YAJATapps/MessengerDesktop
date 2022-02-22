@@ -25,6 +25,8 @@ namespace MessengerDesktop
 
         private List<string> profileIdList = new List<string>();
 
+        public static string appUrl = System.Environment.GetEnvironmentVariable("APP_API_URL");
+
         public ChatForm()
         {
             InitializeComponent();
@@ -40,13 +42,13 @@ namespace MessengerDesktop
             HttpClient client = new HttpClient();
 
             // The url for messenger API
-            var apiUrl = System.Environment.GetEnvironmentVariable("APP_API_URL") + "/api/v1/users/id?user=" + username;
+            var apiUrl = appUrl + "/api/v1/users/id?user=" + username;
 
             var response = await client.PostAsync(apiUrl, null);
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            uid = responseString.Substring(1, responseString.Length-2);
+            uid = responseString.Substring(1, responseString.Length - 2);
 
             loadMenu();
         }
@@ -72,7 +74,7 @@ namespace MessengerDesktop
             HttpClient client = new HttpClient();
 
             // The url for messenger API
-            var apiUrl = System.Environment.GetEnvironmentVariable("APP_API_URL") + "/api/v1/users/contacts?user=" + uid;
+            var apiUrl = appUrl + "/api/v1/users/contacts?user=" + uid;
 
             var response = await client.PostAsync(apiUrl, null);
 
@@ -118,7 +120,7 @@ namespace MessengerDesktop
             HttpClient client = new HttpClient();
 
             // The url for messenger API
-            var apiUrl = System.Environment.GetEnvironmentVariable("APP_API_URL") + "/api/v1/messages/list?frm=" + uid + "&to=" + tid;
+            var apiUrl = appUrl + "/api/v1/messages/list?frm=" + uid + "&to=" + tid;
 
             var response = await client.PostAsync(apiUrl, null);
 
@@ -161,7 +163,7 @@ namespace MessengerDesktop
         {
             Button button = (Button)sender;
             contactLabel.Text = button.Text;
-            tid = (string) button.Tag;
+            tid = (string)button.Tag;
 
             loadMessagesIntoPanel();
 
@@ -214,7 +216,7 @@ namespace MessengerDesktop
                 HttpClient client = new HttpClient();
 
                 // The url for messenger API
-                var apiUrl = System.Environment.GetEnvironmentVariable("APP_API_URL") + "/api/v1/messages/add?frm=" + uid + "&to=" + tid + "&msg=" + newMessage;
+                var apiUrl = appUrl + "/api/v1/messages/add?frm=" + uid + "&to=" + tid + "&msg=" + newMessage;
 
                 var response = await client.PostAsync(apiUrl, null);
 
